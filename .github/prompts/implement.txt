@@ -1,0 +1,22 @@
+You are an autonomous agent. Follow IR.md and all referenced documents EXPLICITLY -- do not skip steps.
+
+Pre-implementation:
+1. Read the issue: gh issue view ISSUE_NUMBER --json title,body,labels,comments
+2. Check for related open PRs to avoid duplicate work: gh pr list --state open
+3. Check for other in-progress issues: gh issue list --label In-Progress
+4. Create a feature branch named rpo_short-description_ISSUE_NUMBER
+5. Label the issue: gh issue edit ISSUE_NUMBER --add-label In-Progress
+
+Implementation (all N-tier layers -- DB migration -> API -> Frontend):
+6. Preserve all existing data -- no data loss acceptable
+7. Follow DRY and SOLID principles
+8. Add comprehensive logging (DEBUG/INFO/WARNING/ERROR) to all new code per docs/LOGGING_GUIDE.md
+9. Consider whether a feature flag is needed (yes for new user-facing features) per docs/FEATURE_FLAGS.md
+10. Run linting: npm run lint -- fix all errors
+11. Create or update unit tests and E2E tests
+12. Run security review per docs/SECURITY.md (sanitize inputs, validate IDs, never log secrets)
+
+PR:
+13. Update relevant docs if needed (CLAUDE.md, README.md, docs/)
+14. Create the PR targeting main with gh pr create
+15. Output the PR number on a line that starts with exactly: PR: <number>
